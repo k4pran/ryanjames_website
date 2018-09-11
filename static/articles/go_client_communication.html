@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 class="article_title">Using Golang's template package with javascript and html</h3>
+<p class="article_date">4th June 2018</p>
+<ul class="article_tags_list">
+    <li class="article_tag">golang</li>
+    <li class="article_tag">javascript</li>
+    <li class="article_tag">client</li>
+    <li class="article_tag">server</li>
+    <li class="article_tag">json</li>
+</ul>
+<div class="article_content_block">
+    <p class="article_content_block_paragraph">
+        Golang is a great server-side language for web development.
+        It's said to come with 'batteries included' as you can go far
+        without relying on third party packages.
+    </p><br>
+    <p class="article_content_block_paragraph">
+        In this tutorial I will show how you can parse json to be used
+        at the client end, in javascript and html. We can do this quite
+        tidily using golang's base packages.
+    </p><br>
+
+    <p class="article_content_block_paragraph">
+        Firstly here is a snapshot of the directory structure I will
+        be using for this example.
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-treeview">
+    project_root/
+        |-- Static/
+        |   |-- json/
+        |   |   `-- animals.json
+        |   |-- templates/
+        |   |-- `-- index.html
+        |   |-- css/
+        |   |   `-- style.css
+        |   |-- js/
+        |   |-- `-- functions.js
+        `-- main.go
+    </code></pre><br>
+
+    <p class="article_content_block_paragraph">
+        Firstly let us work on our main.go file. Begin by defining the main function.
+        The first handle function handles requests beginning with '/static/' and modifies it
+        by stripping '/static/' from the request.
+        E.g. localhost:8000/static/css becomes localhost:8000/css. This is common practice
+        and means if you want to change the static directory and rename it 'assets' for example
+        you only need to change the last part of the line to http.FileServer(http.Dir("assets"))
+        and any time that anything from the static directory is requested the server will look
+        in the assets directory.
+    </p>
+    <p class="article_content_block_paragraph">
+        The second line handles the root directory "/" and so when someone
+        visits the home url (localhost:8000) the function 'handleIndex' will be called
+        to handle the request. Finally, the ListenAndServe function listens for requests
+        on the port specified in the first argument. In our case it is port 8000.
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-go">
+        func main() {
+            http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+            http.HandleFunc("/", handleIndex)
+            http.ListenAndServe(":8000", nil)
+        }
+    </code></pre><br>
+
+    <p class="article_content_block_paragraph">
+        This small website only contains a single page and so we only need
+        to look to handleIndex() to serve the webpage. Here it is.
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-go">
+        func handleIndex(w http.ResponseWriter, r *http.Request) {
+            tmpl, _ := template.ParseFiles("static/templates/index.html")
+
+            // Read json file
+            content, err := ioutil.ReadFile("static/json/animals.json")
+            if err != nil {
+                fmt.Println(err)
+            }
+
+            // unmarshal json file into Animals struct
+            if err := json.Unmarshal(content, &animals); err != nil {
+                panic(err)
+            }
+            tmpl.Execute(w, animals)
+        }
+    </code></pre><br>
+
+    <p class="article_content_block_paragraph">
+        The first line of the function parses html files and returns a pointer
+        to them which we store in tmpl. You may have noticed that I am speaking
+        in the plural. This is because template.ParseFiles() accepts any number
+        of html templates to parse, but they will all be associated with each
+        other and so we only need the single reference to them - tmpl. Before
+        the template is executed notice we use json.Unmarshal(). This method parses
+        the json-encoded data and stores the result in the value pointed to by
+        the second argument. It can be stored in different ways, in this case it
+        will be stored in a struct 'animals' which was defined at package-level.
+        Finally tmpl.Execute() applies the parsed templates to the response for
+        the client. The second argument 'animals' is the struct containing the json
+        data. Multiple objects can be passed here for use within the html documents.
+    </p><br>
+
+    <p class="article_content_block_paragraph">
+        Let's take a look at the struct we are passing the json data to.
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-go">
+        type Animals struct {",
+            Title     string             `json:"title"`",
+            Locations map[string]string  `json:"locations"`",
+            Image     string             `json:"image"`",
+            About     string             `json:"about"`"
+        }
+    </code></pre><br>
+
+    <p class="article_content_block_paragraph">
+        The struct fields will be holding the values of the json data. The
+        field types should align with the json data. E.g. a string array/slice should
+        be prepared for a json array. The tags at the right of each field
+        tells go a few things:<br>
+            &emsp;- `<b>json</b>:"title"`" - json tells go to expect json parsed values <br>
+            &emsp;- `json:<b>"title"</b>`" - title tells go that this is where to place the values for the key "title"<br><br>
+        Go can also ignore these metatags and use the struct field names instead, however
+        I think the tags make it more explicit and means you can change the field names freely.
+        Look carefully at the json file and understand the relationship to this struct.
+    </p><br>
+
+    <p class="article_content_block_paragraph">
+        That's go.main in a nutshell. The full source code is below and can also be found
+        at <--TODO--> so have a read over it and we will then step into the html file.
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-go">
+        package main
+
+        import (
+            "net/http"
+            "html/template"
+            "io/ioutil"
+            "fmt"
+            "encoding/json"
+        )
+
+        var animals Animals
+
+        func main() {
+
+            http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+            http.HandleFunc("/", handleIndex)
+            http.ListenAndServe(":8000", nil)
+        }
+
+        func handleIndex(w http.ResponseWriter, r *http.Request) {
+            tmpl, _ := template.ParseFiles("static/templates/index.html")
+
+            // Read json file
+            content, err := ioutil.ReadFile("static/json/animals.json")
+            if err != nil {
+                fmt.Println(err)
+            }
+
+            // unmarshal json file into Animals struct
+            if err := json.Unmarshal(content, &animals); err != nil {
+                panic(err)
+            }
+            tmpl.Execute(w, animals)
+        }
+
+        type Animals struct {
+            Title     string             `json:"title"`
+            Locations map[string]string  `json:"locations"`
+            Image     string             `json:"image"`
+            About     string             `json:"about"`
+        }
+    </code></pre><br>
+
+    <p class="article_content_block_paragraph">
+        Any fields that you want to render in the html template should
+        be surrounded by {{"{{}}"}}. Remember the struct that was passed
+        in the execute() func? Those fields can now be accessed. For example
+        {{"{{.Title}}"}} will insert the value of 'Title' into the template.<br>
+        Let's run through a few more examples:<br>
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-html">
+        {{"&ltp&gt{{$greeting := \"This website was made by \"}}&lt/p&gt"}} &lt!-- Store values inside a variable-&gt
+    </code></pre>
+
+    <pre class="article_content_block_paragraph"><code class="language-html">
+        {{"&ltp&gt{{$greeting}}{{.Name}}&lt/p&gt"}} &lt!-- Use values stored in a variable and passed during template execution -&gt
+    </code></pre>
+
+    <pre class="article_content_block_paragraph"><code class="language-html">
+        {{"{{range $k, $v := .Locations}}"}}
+            &ltp&gt{{"{{$k}} lives in {{$v}},"}} &lt/p&gt &lt!-- Use loops to gather key-value pairs from a map. Same idea for arrays -&gt
+        {{"{{end}}"}}
+    </code></pre>
+
+    <p class="article_content_block_paragraph">
+        It is sometimes useful to insert other html files. Html files
+        that you intend to use can be parsed and inserted using go.
+        If you passed the html file you want to insert to template.ParseFiles()
+        you can simple insert it using 'template' - {{"{{template other_file.html .}}"}}.
+        Data passed from main.go is only accessible to the first file passed. You can pass
+        the data by entering the data to be passed after the filename.
+        In this case the '.' passes all the data to other_file.html. The template method
+        inserts the file at that position.
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-html">
+        {{"{{template other_file.html .}}"}} &lt!-- Insert a template and pass all available go values with '.' -&gt
+    </code></pre><br>
+
+    <p class="article_content_block_paragraph">
+        The loop runs for each key/value pair in Locations and executes the code between
+        the range line and {{"{{end}}"}}. You can see the &ltp&gt tags that wrap the sentence
+        we constructed at each iteration of the loop. The result can be seen below.
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-text">
+        Fish are found in the ocean
+
+        Hedgehogs are found in the bushes
+
+        Lions are found in the jungle
+
+        Penguins are found in the arctic
+
+        Squirrels are found in the trees
+
+        Worms are found in the soil
+    </code></pre><br>
+
+    <p class="article_content_block_paragraph">
+        We use the double braces in javascript in the same way. The only difference
+        to be aware of is that you will need to wrap the values in quotations so that
+        javascript understands it is a string and not a variable. In a script tag the
+        loop we showed in html can be demonstrated in javascript. This time we will ignore
+        the locations and fill a javascript array with the Location 'keys' which are the
+        animal names.
+    </p><br>
+
+    <pre class="article_content_block_paragraph"><code class="language-javascript">
+        // Iterate over keys and append to js 'animals' array.
+        var animals = [
+            {{"{{range $k, $_ := .Locations}}"}}
+                {{"{{$k}}"}},
+            {{"{{end}}"}}
+        ];
+    </code></pre><br>
+
+    <h5 class="article_conclusion_heading">Conclusion</h5><br>
+
+    <p class="article_content_block_paragraph">
+        As you can see you can get very far using golang's built-in packages and it is quite straight forward to use
+        and a very nice choice as a server-side language. This has been a brief overview of using a simple web server
+        and of course there are many more features that golang has to offer.
+    </p><br>
+
+</div>
+</body>
+</html>

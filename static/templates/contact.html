@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/modal.css"/>
+    <script type="text/javascript" src="/static/js/prism.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tajawal:500" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css"
+          rel="stylesheet" type="text/css" />
+</head>
+<body>
+{{template "header.html"}}
+<div class="page_wrapper">
+
+    <h2 id="contact_title" class="page_title">Get in touch!</h2>
+    <hr>
+
+    <div id="contact_info_block">
+        {{/*<p id="contact_email">Email: {{.email}}</p>*/}}
+        {{/*<p id="contact_github">Github: {{.github}}</p>*/}}
+    </div>
+
+    <div id="contact_boxes">
+        <div id="hire_box">
+            <h3 class="contact_box_headings">Hire me</h3>
+            <p class="contact_box_messages">
+                If you want me to work on your project, let me know what you have in mind.
+            </p>
+        </div>
+        <div id="contribute_box">
+            <h3 class="contact_box_headings">Want to contribute?</h3>
+            <p class="contact_box_messages">
+                If you feel that you can use your skills to help me in my
+                project I would love to hear from you.
+            </p>
+        </div>
+        <div id="other_box">
+            <h3 class="contact_box_headings">Everything else</h3>
+            <p class="contact_box_messages">
+                Anything else you want to contact me for, or to simply say hello,
+                feel free to send me a message.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div id="contact_form_modal" class="modal">
+    <!-- Modal content -->
+    <div class="contact_form_modal_content">
+        <span class="close">&times;</span>
+
+        <div id="contact_form_block">
+            <p id="msg_to_sender"></p>
+            <p id="form_submission_confirm" style="display: none; color:green">
+                Success! Thank you for contacting me. I will respond soon.
+            </p>
+            <form id="contact_form" action="contact.html" method="post">
+                <input id="hidden_subject" type="hidden" name="subject" value="" />
+                <div id="contact_form_top_row">
+                    <input id="contact_form_first_name" type="text" name="first_name" placeholder="First name"
+                           data-validation="length" data-validation-length="4-24">
+                    <input id="contact_form_last_name" type="text" name="last_name" placeholder="Last name"
+                           data-validation="length" data-validation-length="4-24">
+                </div>
+                <input id="contact_form_email" type="email" name="email" placeholder="Enter email" data-validation="email">
+                <input id="contact_form_company" type="text" name="company" placeholder="Enter company" data-validation-optional="true">
+                <select id="project_select" name="projects" data-validation="required">
+                    <option value="a" disabled selected>Select a project</option>
+                    <option value="oak">Oak</option>
+                    <option value="other">Other</option>
+                </select>
+                <textarea id="contact_form_message" name="message" rows="10" placeholder="Your message"
+                          data-validation="length" data-validation-length="8-500"></textarea>
+                <input type="submit" value="Submit"><br><br>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script type="text/javascript">
+    $.validate({
+        modules : 'security'
+    });
+
+</script>
+<script type="text/javascript" src="/static/js/modal.js"></script>
+
+</body>
+</html>

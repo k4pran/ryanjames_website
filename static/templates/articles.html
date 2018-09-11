@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Articles</title>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/prism.css"/>
+    <link rel="stylesheet" href="/static/css/prism-treeview.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tajawal:500" rel="stylesheet">
+    <script type="text/javascript" src="/static/js/article-generate.js"></script>
+</head>
+<body>
+<div id="articles_page_wrapper" class="page_wrapper">
+
+{{template "header.html"}}
+
+    <div id="articles_list_wrapper">
+        <div class="page_margin"></div>
+        <!--Article list will be injected into 'articles_list'-->
+        <div id="articles_list">
+            {{template "go_client_communication.html"}}
+        </div>
+        <div class="page_margin"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/prism.js"></script>
+<script type="text/javascript" src="/static/js/prism-treeview.js"></script>
+</body>
+</html>

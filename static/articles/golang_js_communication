@@ -1,0 +1,45 @@
+{
+  "title": "Golang - Passing json to javascript",
+  "date" : "4th June 2018",
+  "tags" : [
+    "golang",
+    "javascript",
+    "json",
+    "server"
+  ],
+  "image_url": "",
+  "content": [
+    {
+      "type": ["text"],
+      "language": [""],
+      "lines": [
+        "Golang is a great server-side language for web development. The phrase 'batteries included' comes to mind as you can get very far without relying on third party packages.",
+        "In this tutorial I will show how you can parse json to be used at the client end in javascript and html. We can do this quite tidily using golang's base packages."
+      ]
+    },
+    {
+      "type": ["code"],
+      "language": ["treeview"],
+      "lines": [
+        "root_folder/,",
+        "|-- a first folder/,",
+        "|   |-- holidays.mov,",
+        "|   |-- javascript-file.js,",
+        "|   `-- some_picture.jpg,",
+        "|-- documents/"
+      ]
+    },
+    {
+      "type": ["code"],
+      "language": ["go"],
+      "lines": [
+        "type Animals struct {",
+        "\tTitle     string             `json:\\\"title\\\"`",
+        "\tLocations map[string]string  `json:\\\"locations\\\"`",
+        "\tImage     string             `json:\\\"image\\\"`",
+        "\tAbout     string             `json:\\\"about\\\"`",
+        "}"
+      ]
+    }
+  ]
+}
