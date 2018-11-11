@@ -3,16 +3,16 @@ package main
 import (
 	"net/http"
 	"text/template"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"github.com/PuerkitoBio/goquery"
+	"os"
 )
 
 var article = ArticleJson{}
 var projectTodos = map[string]TodoList{}
-
+var email string;
+var pass  string;
 
 var contactMap = map[string]interface{}{
 	"email": "ryanmccauley211@gmail.com",
@@ -30,16 +30,8 @@ func handleProjects(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleArticles(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("static/templates/articles.html", "static/templates/header.html", "static/articles/go_client_communication.html")
 
-	content, err := ioutil.ReadFile("static/articles/golang_js_communication")
-	if err != nil {
-		fmt.Println(err) // todo
-	}
-
-	if err := json.Unmarshal(content, &article); err != nil {
-		panic(err) // todo
-	}
+	tmpl, _ := template.ParseFiles("static/templates/articles.html", "static/templates/header.html", "static/articles/git_part1_introduction.html", "static/articles/go_client_communication.html", "static/articles/a-frame_intro.html", "static/articles/binary_decimal_and_hex.html")
 
 	tmpl.Execute(w, article)
 }
@@ -49,7 +41,7 @@ func handleContact(w http.ResponseWriter, r *http.Request) {
 
 	formSubmitted := false
 	if r.Method == "POST" {
-		//handleSend(r)
+		handleSend(r)
 		formSubmitted = true
 	}
 
@@ -61,24 +53,34 @@ func handleAbout(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-//func handleSend(r *http.Request) {
-//	fmt.Println("method:", r.Method) //get request method
-//	r.ParseForm()
-//	SendMail(r.Form["subject"][0], r.Form["name"][0], r.Form["email"][0], r.Form["message"][0])
-//}
+func handleSend(r *http.Request) {
+	fmt.Println("method:", r.Method) //get request method
+	r.ParseForm()
+	name := r.Form["first_name"][0] + " " + r.Form["last_name"][0];
+	SendMail(r.Form["subject"][0], name, r.Form["email"][0], r.Form["message"][0], email, pass)
+}
+
+func handleTagRequests(w http.ResponseWriter, r *http.Request) {
+
+}
 
 func main() {
 
+	email = os.Args[1];
+	pass  = os.Args[2];
+
 	getTodoList("oak", "https://github.com/ryanmccauley211/Oak/blob/master/README.md")
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/", handleHome)
-	http.HandleFunc("/projects/", handleProjects)
-	http.HandleFunc("/articles/", handleArticles)
-	http.HandleFunc("/contact/", handleContact)
-	http.HandleFunc("/about/", handleAbout)
+	http.HandleFunc("/projects", handleProjects)
+	http.HandleFunc("/articles", handleArticles)
+	http.HandleFunc("/contact", handleContact)
+	http.HandleFunc("/about", handleAbout)
+
+	http.HandleFunc("/tag", handleTagRequests)
 
 	fmt.Println("Listening...")
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe("localhost:8040", nil))
 }
 
 func getTodoList(projectName string, url string) error {
