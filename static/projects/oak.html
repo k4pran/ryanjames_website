@@ -1,9 +1,7 @@
-<section id="oak_project" class="project" xmlns="http://www.w3.org/1999/html">
     <h4 class="project_title">Oak</h4>
+    <hr class="project_title_hr">
     <div class="project_summary_row">
-        <div id="project_oak_video" class="embedded_videos">
-            <iframe style="border: 3px solid #EEE"; width="500" height="350" src="https://www.youtube.com/embed/2veW9yznFdU" frameborder="0" allowfullscreen></iframe>
-        </div>
+        <iframe id="oak_project_video collapsible" height="350" src="https://www.youtube.com/embed/2veW9yznFdU" frameborder="0" allowfullscreen></iframe>
         <div class="project_info">
             <p class="project_languages"><strong>Languages / frameworks</strong>: java, maven</p>
             <p class="project_description">
@@ -14,8 +12,8 @@
             <a class="github_link" href="https://github.com/ryanmccauley211/Oak">Visit oak at github</a>
         </div>
     </div>
-    <h5 class="project_features_heading">Features</h5>
-    <ul class="project_feature_list">
+    <h5 class="project_features_heading collapsible">Features</h5>
+    <ul class="project_feature_list collapsible">
         <li>Outputs an mp4 and/or a PDF with ocarina tabs.</li>
         <li>Packaged with an ocarina soundfont to output realistic audio</li>
         <li>Add your own custom background</li>
@@ -24,8 +22,8 @@
     </ul>
 
     {{if .oak.Loaded}}
-        <h5 class="todo_list_heading">Progress</h5>
-        <ul id="oak_todo" class="todo_list">
+        <h5 class="todo_list_heading collapsible">Progress</h5>
+        <ul id="oak_todo" class="todo_list collapsible">
         {{range $completedItem := .oak.Checked}}
             <li class="todo_item todo_checked_item">
                 <input type="checkbox" id disabled checked>
@@ -48,4 +46,3 @@
         {{end}}
         </ul>
     {{end}}
-</section>
