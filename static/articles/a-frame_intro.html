@@ -1,0 +1,93 @@
+<h3 class="article_title">A-Frame - An Introduction</h3>
+<p class="article_date"><!-INSERT DATE-></p>
+<ul class="article_tags_list">
+    <li class="article_tag">a-frame</li>
+    <li class="article_tag">three js</li>
+    <li class="article_tag">webvr</li>
+    <li class="article_tag">virtual reality</li>
+    <li class="article_tag">javascript</li>
+    <li class="article_tag">html</li>
+</ul>
+<div class="article_content_block">
+    <p class="article_content_block_paragraph">
+        This introduction to a-frame will be a brief overview of what a-frame is and what you can do with it. It will
+        be the first in a series of posts that will include tutorials on how to use it and looking under the hood to
+        gain a better understand of a-frame.
+    </p><br>
+
+    <p class="article_content_block_paragraph">
+        A-frame is a framework for creating virtual reality (VR) experiences. The term a-frame is used in construction
+        to bear a heavy load in a lightweight manner. A-frame does this as you can create VR experiences using html and
+        so you can use any IDE that supports html, or even develop using a simple text editor. Continuing the a-frame
+        construction analogy it leverages <a href="https://threejs.org/">three.js</a> to render 3d graphics and is built
+        on top of <a href="https://webvr.info/">webvr</a> to handle lower level VR tasks such as communicating with
+        virtual reality headsets and devices. A-frame abstracts lower level graphics with three.js and lower level VR
+        jobs with webvr and so it is a good idea to take a step back and look at what three.js and webvr. We will
+        being by looking at webvr.
+    </p><br>
+
+    <h4 class="article_sub_heading">WebVR in Brief</h4>
+    <p class="article_content_block_paragraph">
+        WebVR is an API written in javascript to provide support for a range of virtual reality devices. It is able to
+        detect the headsets, figure out what the headsets can do and allow developers to communicate with the devices
+        via javascript. It can for example provide position, orientation, FOV, display info and much more. The API also
+        includes a low-level API for interfacing with gamepads and an API that extends the gamepad API for more advanced
+        gamepads. An example is the oculus touch controllers. WebVR provides mappings to the controller to allow
+        developers to listen for click events or thumbstick movements. Position, orientation, vibration, haptics and
+        other advanced features are provided in the gamepad extensions API. It also renders the controller in VR so you can
+        see the controller in the VR environment or hands or whatever 3d model you want to replace the controller.
+    </p>
+
+    <p class="article_content_block_paragraph">
+        WebVR is still very new and has limited support across browsers. It originated with mozilla and so naturally firefox
+        is supported and is probably the best browser to use to get started. Chrome for android also offers support and
+        it would be worth while checking back occasionally as other browsers may follow suit.
+    </p>
+
+    <h5 class="resources_heading">Useful Resources</h5>
+    <ul class="resources_list">
+        <li><a href="https://webvr.info/">webvr.info</a> - A simple 'about' page</li>
+        <li><a href="https://webvr.rocks/">webvr.rocks</a> - Browser compatability information</li>
+        <li><a href="https://github.com/immersive-web/webvr">Github WebVR specification</a> - Specification and issue tracker</li>
+        <li><a href="https://gist.github.com/mrdoob/e4f54a1ffa88874d066baa088d2bd3c8">webvr-projects</a> - Examples and testing</li>
+        <li><a href="https://en.wikipedia.org/wiki/WebVR">wiki</a> - Wikipedia article</li>
+    </ul>
+
+    <h4 class="article_sub_heading">ThreeJS in Brief</h4>
+    <p class="article_content_block_paragraph">
+        Now onto three.js that provides a-frame with a 3d rendering library. A-frame is built on top of three.js and exposes
+        its' underlying functionality. A lot of this functionality can be accessed using a-frame's html tags. An example
+        is using the html tag &lt;a-box&gt;
+    </p>
+
+    <pre class="article_content_block_paragraph collapsible"><code class="language-html">
+        &lt;a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow&gt;&lt;/a-box&gt;
+    </code></pre>
+
+    <p class="article_content_block_paragraph">
+        You can see the example above uses A-frame to create a cube. It exposes three's BoxGeometry class. Also notice
+        that you are not writing any javascript here, only html, but can still access properties such as position in
+        the Object3D class (which is a base class for most 3D objects) using html attributes. Some of the base A-frame
+        tags map directly to a three.js class:
+    </p>
+    <ul>
+        <li>&lt;a-scene&gt;&lt;/a-scene&gt; maps to a three.js scene</li>
+        <li>&lt;a-entity&gt;&lt;/a-entity&gt; maps to a three.js object</li>
+    </ul>
+
+    <p class="article_content_block_paragraph">
+        The relationship between a-frame and three.js is a close one and you have full access to three.js through a-frame.
+        You will eventually begin using javascript once you need to move beyond the basics and create custom objects or
+        'entities' in a-frame terminology. The whole three.js framework is stored as a global object 'THREE' and so you
+        literally have the whole library at your fingertips.
+    </p>
+
+    <p class="article_content_block_paragraph">
+        Now that we have talked briefly about the relationship between a-frame and three.js it is worth focusing more on
+        what exactly three.js is. In its' own words <br><br>
+        "<i>Three.js is a lightweight cross-browser JavaScript library/API used to create and display animated 3D
+        computer graphics on a Web browser. Three.js scripts may be used in conjunction with the HTML5 canvas element,
+        SVG or WebGL.</i>"<br><br>
+    </p>
+
+</div>
