@@ -1,0 +1,49 @@
+#contact_info_block {
+    padding: 20px;
+}
+
+#contact_form_block {
+    align-self: center;
+}
+
+#contact_boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 800px) {
+    #contact_boxes {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #contact_boxes div {
+        margin-bottom: 30px;
+    }
+}
+
+.contact_box_headings {
+    font-size: 30px;
+    padding: 15px
+}
+
+.contact_box_messages {
+    font-style: italic;
+    font-size: 20px;
+    padding: 15px
+}
+
+#hire_box, #contribute_box, #other_box {
+    flex: 1;
+    height: 300px;
+    border: 2px solid black;
+    margin: 0 40px;
+}
+
+#hire_box:hover, #contribute_box:hover, #other_box:hover {
+    color: honeydew;
+    background-color: black;
+    cursor: pointer;
+}
