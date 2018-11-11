@@ -7,10 +7,6 @@ import (
 	"net/smtp"
 )
 
-const (
-	MY_EMAIL = "user@mail.com"
-)
-
 type Mail struct {
 	senderAddr    string
 	recipientAddr string
@@ -38,15 +34,15 @@ func (mail *Mail) BuildMessage() string {
 	return message
 }
 
-func SendMail(subject, name, senderAddr, message string) {
-	mail := Mail{senderAddr, MY_EMAIL, subject, message}
+func SendMail(subject, name, senderAddr, message string, email string, pass string) {
+	mail := Mail{senderAddr, email, subject, message}
 	messageBody := mail.BuildMessage()
 
 	smtpServer := SmtpServer{host: "smtp.gmail.com", port: "465"}
 
 	log.Println(smtpServer.host)
 	//build an auth
-	auth := smtp.PlainAuth("", MY_EMAIL, "password", smtpServer.host) // todo password
+	auth := smtp.PlainAuth("", email, pass, smtpServer.host) // todo password
 
 	// Gmail will reject connection if it's not secure
 	// TLS config
