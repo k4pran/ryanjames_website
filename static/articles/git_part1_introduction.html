@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Git and Github Part 1 - Introduction</title>
+</head>
+<body>
+<h3 class="article_title">Git and Github Part 1 - Introduction</h3>
+<p class="article_date"><!-INSERT DATE-></p>
+<ul class="article_tags_list">
+    <li class="article_tag">git</li>
+    <li class="article_tag">github</li>
+    <li class="article_tag">version control</li>
+</ul>
+<div class="article_content_block">
+    <p class="article_content_block_paragraph">
+        In this tutorial series I will be discussing git and github. The goal of these tutorials is to give
+        a well-rounded introduction to git and get you to a level where you understand it well enough to handle
+        most situations. It will not be comprehensive, however it will begin with the basics and delve a little
+        into intermediate git.
+    </p><br>
+
+    <p class="article_content_block_paragraph">
+        Let's jump in with the question - <i>what is git?</i><br>
+        Git was developed in 2005 by Linus Torvalds and is an application used for <b>version control</b>. To understand
+        git you need to understand version control and what problem it solves.
+    </p><br>
+
+    <h5 class="article_sub_heading">Version Control</h5><br>
+    <p class="article_content_block_paragraph">
+        Version control is a system that allows you to track documents over time. It can track changes, hold old versions,
+        allow your project to split into different paths (called branches) and much more. It has very widespread usage
+        in software development, however it is also used in other domains such as writing laws, film editing, book publishing etc.
+        If you use a text editor that allows you to roll back your changed to an early version, that is another example
+        of version control. In the context of writing code, it is extremely useful for a number of reasons. Imaging you
+        get your program working, but then make a few tweaks which breaks everything. You may want to roll back to an
+        early version. This is only one of many features git (and other version control) has, so let's return back to
+        focus on git now that we have an idea of what version control is.
+    </p><br>
+
+    <h5 class="article_sub_heading">What can git do</h5><br>
+    <p class="article_content_block_paragraph">
+        As we mentioned, git tracks changes in your code along with the date/time of these changes. These changes are
+        saved and logged using a command called <b>commit</b>. You change your code then <i>commit</i> these changes. If
+        you do not like these changes or something goes wrong you always have the option to roll back to an earlier
+        version. Commits often include a message with them. The message consists of a short summary of what changes you
+        made to a given file or files. This is also extremely useful for yourself and others to look back at all the changes
+        made to understand why these changes were made and what they were trying to accomplish.
+    </p><br>
+
+    <p>
+        Git can also have multiple <b>branches</b>. You can think of branches as different paths your code can takes.
+        You will always have at least one branch and the main branch is known as the <b>master</b> branch. An example of
+        how branches could be used goes like this. Imaging you are working on a project such as a calculator. You have
+        arrived at a point where you may want the calculator to display previous calculations to the user for consecutive
+        calculations such as how google's calculator does. Instead of commiting to going this single direction you could
+        create a separate branch and work on this feature. You now have two branches. The master branch and the newly created
+        one that you named "history_tracker" or something useful. You can decide at some point whether to discard this
+        branch, keep it as an alternative branch for later use or to <b>merge</b> it with the master branch if you decide
+        this is a feature you want as a part of your calculator project.
+    </p><br>
+    <p><br>
+        Git makes it easier to manage work across multiple devices and across multiple developers by using certain
+        commands such as <b>push</b> which sends local changes to update a branch or <b>pull</b> which pulls changes
+        from a remote location to a local machine. Many developers can work on the same projects and be pushing, pulling,
+        merging branches, committing changes etc and git helps make managing all of this much easier.
+    </p>
+    <p><br>
+        There are many other features, however we will discuss these as we go along.
+    </p>
+    <h5 class="article_sub_heading">Git vs Github</h5><br>
+    <p class="article_content_block_paragraph">
+        The title of this series is git AND github. We have only been discussing git as it can be easy to confuse the two.
+        Git is an application with a commandline interface (CLI). Github is a website that facilitates version control
+        using git. It offers the functionality that git offers along with some extra features such as issue tracking.
+        They are not the same thing but it helps to think of github as a web service built on top of git and it offers
+        a user-friendly interface for version control.
+    </p><br>
+    <p class="article_content_block_paragraph">
+        Creating an account at github is free and you do not need git installed. Simply visit
+        <a href="https://github.com/">github.com</a> and sign up. There is a demo on creating your first project to help
+        you get started. Projects are called <b>repositories</b> or "repos" and in github they can be public or private.
+        You may be limited to the number of private ones you can have for free.
+    </p>
+    <h5 class="article_conclusion_heading">Conclusion</h5><br>
+    <p class="article_content_block_paragraph">
+        This was a short introduction to git to help you understand what it is and why we use it. Git is an application
+        using a commandline interface that offers version control over your documents. Github is a web-based service
+        that uses git's features along with a few extra ones to give you control when managing your "repos" and
+        makes collaboration easier.
+    </p>
+</div>
+</body>
+</html>

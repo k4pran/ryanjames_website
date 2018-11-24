@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: #da635d;
+}
+
+#home-page-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50fr 40fr 10fr;
+    grid-template-rows: auto;
+    background-color: #da635d;
+    align-items: stretch;
+}
+
+svg {
+}
+
+#home-left-half {
+    background-color: #4e4e56;
+}
+
+#author-name-container {
+    align-self: center;
+    grid-column: 2;
+}
+
+#author-name {
+    font-family: 'Tangerine', cursive;
+}
+
+#side-bar {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    justify-items: center;
+    align-items: center;
+    grid-template-rows: auto 20% 20% 20% 20% auto;
+    grid-row-gap: 1vmin;
+}
+
+#menu-item-a {
+    grid-row-start: 2;
+}
+
+#menu-item-b {
+    grid-row-start: 3;
+}
+
+#menu-item-c {
+    grid-row-start: 4;
+}
+
+#menu-item-d {
+    grid-row-start: 5;
+}
+
+.side-bar-grid-item {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 7vmin;
+}
+
+.side-bar-grid-item a {
+    text-decoration: none;
+    text-align: center;
+    color: 	#DEDEDE;
+}
+
+.side-bar-grid-item a:hover {
+    color: 	#FEFEFE;
+    margin-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+

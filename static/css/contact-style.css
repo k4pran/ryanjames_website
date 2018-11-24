@@ -1,49 +1,87 @@
-#contact_info_block {
-    padding: 20px;
+#contact-page-container {
+    height: 100%;
+    width: 100%;
+    background-color: #FEFEFE;
+    display: grid;
+    grid-template-columns: auto 25% 25% 25% auto;
+    grid-template-rows: 30% auto auto 5%;
+    grid-column-gap: 5%;
+    grid-row-gap: 2%;
+    align-items: stretch;
 }
 
-#contact_form_block {
-    align-self: center;
+#contact-header {
+    grid-column: 2 / 5;
+    text-align: center;
+    align-self: end;
+    font-size: 7vmin;
+    padding: 2vmin 0;
+    margin-bottom: 2vmin;
 }
 
-#contact_boxes {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+hr {
+    margin: 5vmin 30vmin;
 }
 
-@media only screen and (max-width: 800px) {
-    #contact_boxes {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    #contact_boxes div {
-        margin-bottom: 30px;
-    }
+#hire-box {
+    grid-column-start: 2;
+    grid-row-start: 2;
 }
 
-.contact_box_headings {
-    font-size: 30px;
-    padding: 15px
+#contribute-box {
+    grid-column-start: 3;
+    grid-row-start: 2;
 }
 
-.contact_box_messages {
+#other-box {
+    grid-column-start: 4;
+    grid-row-start: 2;
+}
+
+.contact-box-headings {
+    font-size: 5vmin;
+    padding-bottom: 10px;
+    padding: 0 8px 10px 8px;
+}
+
+.contact-box-messages {
     font-style: italic;
-    font-size: 20px;
-    padding: 15px
+    font-size: 4vmin;
+    padding: 0 8px;
 }
 
-#hire_box, #contribute_box, #other_box {
-    flex: 1;
-    height: 300px;
-    border: 2px solid black;
-    margin: 0 40px;
+#hire-box, #contribute-box, #other-box {
+    border: 3px groove #9a9a9a;
 }
 
-#hire_box:hover, #contribute_box:hover, #other_box:hover {
+#hire-box:hover, #contribute-box:hover, #other-box:hover {
     color: honeydew;
-    background-color: black;
+    background-color: #121212;
     cursor: pointer;
+}
+
+.contact-bottom-menu {
+    grid-column: 1 / end;
+    grid-row-start: 4;
+    background-color: #da635d;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
+    justify-items: center;
+    align-items: center;
+}
+
+.contact-bottom-menu-item {
+    font-size: 4vmin;
+}
+
+.contact-bottom-menu-item a {
+    font-family: 'Oxygen', sans-serif;
+    text-decoration: none;
+    color: #343434;
+}
+
+.contact-bottom-menu-item a:hover {
+    color: #eeeeee;
 }

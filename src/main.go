@@ -56,8 +56,8 @@ func handleAbout(w http.ResponseWriter, r *http.Request) {
 func handleSend(r *http.Request) {
 	fmt.Println("method:", r.Method) //get request method
 	r.ParseForm()
-	name := r.Form["first_name"][0] + " " + r.Form["last_name"][0];
-	SendMail(r.Form["subject"][0], name, r.Form["email"][0], r.Form["message"][0], email, pass)
+	//name := r.Form["first_name"][0] + " " + r.Form["last_name"][0];
+	//SendMail(r.Form["subject"][0], name, r.Form["email"][0], r.Form["message"][0], email, pass)
 }
 
 func handleTagRequests(w http.ResponseWriter, r *http.Request) {
@@ -80,7 +80,7 @@ func main() {
 	http.HandleFunc("/tag", handleTagRequests)
 
 	fmt.Println("Listening...")
-	log.Fatal(http.ListenAndServe("localhost:8040", nil))
+	log.Fatal(http.ListenAndServe("localhost:8080", nil))
 }
 
 func getTodoList(projectName string, url string) error {

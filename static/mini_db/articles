@@ -1,9 +1,14 @@
-{
-  "article_meta_info": [
-    {
-      "name": "go_client_communication.html",
-      "tags": ["golang", "javascript", "client", "server", "json"],
-      "date": "4th June 2018"
-    }
-  ]
-}
+[
+  {
+    "ref": "1",
+    "found_in": "go_client_communication.html",
+    "date": "2018-06-04",
+    "tags": ["golang", "javascript", "client", "server", "json"]
+  },
+  {
+    "ref": "2",
+    "found_in": "a-frame_intro.html",
+    "date": "1901-01-01",
+    "tags": ["a-frame", "threeJS", "webvr", "virtual reality", "javascript", "html"]
+  }
+]

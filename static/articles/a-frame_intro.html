@@ -2,7 +2,7 @@
 <p class="article_date"><!-INSERT DATE-></p>
 <ul class="article_tags_list">
     <li class="article_tag">a-frame</li>
-    <li class="article_tag">three js</li>
+    <li class="article_tag">threeJS</li>
     <li class="article_tag">webvr</li>
     <li class="article_tag">virtual reality</li>
     <li class="article_tag">javascript</li>
@@ -85,9 +85,32 @@
     <p class="article_content_block_paragraph">
         Now that we have talked briefly about the relationship between a-frame and three.js it is worth focusing more on
         what exactly three.js is. In its' own words <br><br>
+    </p>
+    <p class="quote">
         "<i>Three.js is a lightweight cross-browser JavaScript library/API used to create and display animated 3D
         computer graphics on a Web browser. Three.js scripts may be used in conjunction with the HTML5 canvas element,
         SVG or WebGL.</i>"<br><br>
     </p>
+    <p class="article_content_block_paragraph">
+        In a nutshell three.js is a javascript library and an API to create 3D graphics and also create animations.
+        You can see the part that three.js plays in A-frame as any virtual reality environment will need to render
+        dynamic 3D scenes. As mentioned before a-frame uses may tags to represent three.js objects, but you can also
+        use javascript to communicate directly with three.js and create custom objects to use in your scene.
+    </p>
+    <p class="article_content_block_paragraph">
+        ThreeJS is itself built on top of another 3D rendering API call WebGL. ThreeJS simply builds on this and
+        uses a canvas to display the 3D scene. You can see the different levels of abstraction going from a-frame to
+        three.js to webgl and although you may never need to learn the lower levels of these APIs built on top of each
+        other, it is still useful to know where a-frame gets its' functionality from.
+    </p>
+
+    <h5 class="resources_heading">Useful Resources</h5>
+    <ul class="resources_list">
+        <li><a href="https://threejs.org/">three.js</a> - Official website</li>
+        <li><a href="https://aframe.io/docs/0.8.0/introduction/developing-with-threejs.html">A-frame and three.js</a> - Working with three.js in a-frame</li>
+        <li><a href="https://github.com/mrdoob/three.js/">github</a> - Official github repository</li>
+        <li><a href="https://threejs.org/examples/">examples</a> - Three.js examples</li>
+        <li><a href="https://en.wikipedia.org/wiki/Three.js">wiki</a> - Wikipedia article</li>
+    </ul>
 
 </div>
