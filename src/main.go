@@ -1,43 +1,43 @@
 package main
 
 import (
-	"net/http"
-	"text/template"
 	"fmt"
-	"log"
 	"github.com/PuerkitoBio/goquery"
+	"log"
+	"net/http"
 	"os"
+	"text/template"
 )
 
 var article = ArticleJson{}
 var projectTodos = map[string]TodoList{}
-var email string;
-var pass  string;
+var email string
+var pass string
 
 var contactMap = map[string]interface{}{
-	"email": "ryanmccauley211@gmail.com",
+	"email":  "ryanmccauley211@gmail.com",
 	"github": "https://github.com/ryanmccauley211",
 }
 
 func handleHome(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("static/templates/home.html", "static/templates/header.html")
+	tmpl, _ := template.ParseFiles("static/templates/home.html")
 	tmpl.Execute(w, nil)
 }
 
 func handleProjects(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("static/templates/projects.html", "static/templates/header.html", "static/projects/oak.html")
+	tmpl, _ := template.ParseFiles("static/templates/projects.html", "static/projects/oak.html")
 	tmpl.Execute(w, projectTodos)
 }
 
 func handleArticles(w http.ResponseWriter, r *http.Request) {
 
-	tmpl, _ := template.ParseFiles("static/templates/articles.html", "static/templates/header.html", "static/articles/git_part1_introduction.html", "static/articles/go_client_communication.html", "static/articles/a-frame_intro.html", "static/articles/binary_decimal_and_hex.html")
+	tmpl, _ := template.ParseFiles("static/templates/articles.html", "static/articles/git_part1_introduction.html", "static/articles/go_client_communication.html", "static/articles/a-frame_intro.html", "static/articles/binary_decimal_and_hex.html")
 
 	tmpl.Execute(w, article)
 }
 
 func handleContact(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("static/templates/contact.html", "static/templates/header.html")
+	tmpl, _ := template.ParseFiles("static/templates/contact.html")
 
 	formSubmitted := false
 	if r.Method == "POST" {
@@ -49,7 +49,7 @@ func handleContact(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleAbout(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("static/templates/about.html", "static/templates/header.html")
+	tmpl, _ := template.ParseFiles("static/templates/about.html")
 	tmpl.Execute(w, nil)
 }
 
@@ -66,8 +66,8 @@ func handleTagRequests(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	email = os.Args[1];
-	pass  = os.Args[2];
+	email = os.Args[1]
+	pass = os.Args[2]
 
 	getTodoList("oak", "https://github.com/ryanmccauley211/Oak/blob/master/README.md")
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
@@ -115,10 +115,10 @@ func getTodoList(projectName string, url string) error {
 }
 
 type ArticleJson struct {
-	Title    string   `json:"title"`
-	Date     string   `json:"date"`
-	Tags     []string `json:"tags"`
-	ImageUrl string   `json:"image"`
+	Title    string                `json:"title"`
+	Date     string                `json:"date"`
+	Tags     []string              `json:"tags"`
+	ImageUrl string                `json:"image"`
 	Content  []map[string][]string `json:"content"`
 }
 
@@ -126,5 +126,5 @@ type TodoList struct {
 	Checked   []string
 	Unchecked []string
 	Deleted   []string
-	Loaded      bool
+	Loaded    bool
 }

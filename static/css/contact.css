@@ -1,3 +1,11 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
 #contact-page-container {
     height: 100%;
     width: 100%;
@@ -39,14 +47,13 @@ hr {
 }
 
 .contact-box-headings {
-    font-size: 5vmin;
-    padding-bottom: 10px;
+    font-size: 4vmin;
     padding: 0 8px 10px 8px;
 }
 
 .contact-box-messages {
     font-style: italic;
-    font-size: 4vmin;
+    font-size: 3vmin;
     padding: 0 8px;
 }
 
@@ -84,4 +91,14 @@ hr {
 
 .contact-bottom-menu-item a:hover {
     color: #eeeeee;
+}
+
+@media only screen and (max-width: 550px) {
+
+    #hire-box, #contribute-box, #other-box {
+        max-height: 180px;
+    }
+    #hire-box p, #contribute-box p, #other-box p {
+        font-size: 2.5vmin;
+    }
 }

@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+#about-page-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+#about-left-half {
+    background-color: #da635d;
+}
+
+#about-right-half {
+    background-color: #4e4e56;
+}

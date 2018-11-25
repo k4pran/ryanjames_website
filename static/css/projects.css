@@ -1,0 +1,116 @@
+#project-page-container {
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: auto auto 100px;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.top-menu-bar {
+    grid-column: 2;
+    background-color: #da635d;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    justify-items: center;
+    align-items: center;
+    margin: 6vmin 0;
+    padding: 6.5vmin 0;
+}
+
+.top-menu-bar a {
+    color: #343434;
+    text-decoration: none;
+    font-size: 3.5vmin;
+}
+
+.top-menu-bar a:hover {
+    color: #eeeeee;
+}
+
+.current-project {
+    grid-column: 2;
+    grid-row: 2;
+    background-color: #FEFEFE;
+    padding: 10px;
+    border: 3px groove #9a9a9a;
+}
+
+.project-title {
+    text-align: center;
+    font-size: 10vmin;
+    padding: 10px 0;
+}
+
+.project-title-hr {
+    margin: 0 20vmin;
+}
+
+.project-summary-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    padding: 20px;
+    grid-column-gap: 2vmin;
+    font-size: 2.5vmin;
+}
+
+.project-img-thumbnail {
+    width: 40vmin;
+    height: 40vmin;
+}
+
+.project-info {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 3fr 1fr 1fr;
+    align-items: center;
+}
+
+.project-languages {
+    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+    margin-bottom: 10px;
+    padding: 2px;
+    border: 1px solid #898989;
+    align-self: start;
+}
+
+.project-description {
+    text-align: justify;
+}
+
+.share-icon-row {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
+    justify-items: center;
+}
+
+.project-features-container {
+    font-size: 3vmin;
+    padding: 20px;
+}
+
+.project-feature-list {
+    list-style: square inside;
+}
+
+.project-subheader {
+    font-size: 4vmin;
+    padding: 10px 0;
+}
+
+.project-todo-container {
+    font-size: 3vmin;
+    padding: 20px;
+}
+
+.project-feature-list li, .todo-list li {
+    margin: 4px 0;
+}
+
+input {
+    vertical-align:middle;
+}

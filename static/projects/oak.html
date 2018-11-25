@@ -1,48 +1,59 @@
-    <h4 class="project_title">Oak</h4>
-    <hr class="project_title_hr">
-    <div class="project_summary_row">
-        <iframe id="oak_project_video collapsible" height="350" src="https://www.youtube.com/embed/2veW9yznFdU" frameborder="0" allowfullscreen></iframe>
-        <div class="project_info">
-            <p class="project_languages"><strong>Languages / frameworks</strong>: java, maven</p>
-            <p class="project_description">
+    <h4 class="project-title">Oak</h4>
+    <hr class="project-title-hr">
+    <div class="project-summary-row">
+        <a href="https://www.youtube.com/watch?v=2veW9yznFdU" data-lity><img class="project-img-thumbnail" src="https://img.youtube.com/vi/2veW9yznFdU/hqdefault.jpg"></a>
+        <div class="project-info">
+            <p class="project-languages">java || maven</p>
+            <p class="project-description">
                 Oak is a way of creating ocarina video and PDF tutorials.
                 It takes a midi file and maps the notes to ocarina tabs
-                and processes them into a complete tutorial.
+                and processes them into a complete tutorials.
             </p>
-            <a class="github_link" href="https://github.com/ryanmccauley211/Oak">Visit oak at github</a>
+            <div class="share-icon-row">
+                <a href="https://github.com/ryanmccauley211/Oak"><img class="share-icon" src="/static/images/github-share.png"></a>
+                <a href="https://github.com/ryanmccauley211/Oak"><img class="share-icon" src="/static/images/fb-share.png"></a>
+                <a href="https://github.com/ryanmccauley211/Oak"><img class="share-icon" src="/static/images/twitter-share.png"></a>
+                <a href="https://github.com/ryanmccauley211/Oak"><img class="share-icon" src="/static/images/more-share.png"></a>
+            </div>
         </div>
     </div>
-    <h5 class="project_features_heading collapsible">Features</h5>
-    <ul class="project_feature_list collapsible">
-        <li>Outputs an mp4 and/or a PDF with ocarina tabs.</li>
-        <li>Packaged with an ocarina soundfont to output realistic audio</li>
-        <li>Add your own custom background</li>
-        <li>Frame rate and audio offset can be set to fine-tune video/audio sync.</li>
-        <li>Add custom text to introduce the video, useful for including website links and contact info.</li>
-    </ul>
 
-    {{if .oak.Loaded}}
-        <h5 class="todo_list_heading collapsible">Progress</h5>
-        <ul id="oak_todo" class="todo_list collapsible">
-        {{range $completedItem := .oak.Checked}}
-            <li class="todo_item todo_checked_item">
-                <input type="checkbox" id disabled checked>
-            {{$completedItem}}
-            </li>
-        {{end}}
-        {{range $todoItem := .oak.Unchecked}}
-            <li class="todo_item todo_unchecked_item">
-                <input type="checkbox" id disabled>
-            {{$todoItem}}
-            </li>
-        {{end}}
-        {{range $delItem := .oak.Deleted}}
-            <li class="todo_item todo_deleted_item">
-                <input type="checkbox" id disabled>
-                <del>
-                {{$delItem}}
-                </del>
-            </li>
-        {{end}}
+    <div class="project-features-container">
+        <h5 class="project-subheader">Features</h5>
+        <ul class="project-feature-list">
+            <li>Outputs an mp4 and/or a PDF with ocarina tabs.</li>
+            <li>Packaged with an ocarina soundfont to output realistic audio</li>
+            <li>Add your own custom background</li>
+            <li>Frame rate and audio offset can be set to fine-tune video/audio sync.</li>
+            <li>Add custom text to introduce the video, useful for including website links and contact info.</li>
         </ul>
-    {{end}}
+    </div>
+
+    <div class="project-todo-container">
+
+        {{if .oak.Loaded}}
+            <h5 class="project-subheader">Progress</h5>
+            <ul id="oak-todo" class="todo-list">
+            {{range $completedItem := .oak.Checked}}
+                <li class="todo-item todo-checked-item">
+                    <input type="checkbox" id disabled checked>
+                {{$completedItem}}
+                </li>
+            {{end}}
+            {{range $todoItem := .oak.Unchecked}}
+                <li class="todo_item todo_unchecked_item">
+                    <input type="checkbox" id disabled>
+                {{$todoItem}}
+                </li>
+            {{end}}
+            {{range $delItem := .oak.Deleted}}
+                <li class="todo_item todo_deleted_item">
+                    <input type="checkbox" id disabled>
+                    <del>
+                    {{$delItem}}
+                    </del>
+                </li>
+            {{end}}
+            </ul>
+        {{end}}
+    </div>

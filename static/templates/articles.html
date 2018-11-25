@@ -2,63 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Articles</title>
-    <link rel="stylesheet" href="/static/css/global-style.css"/>
-    <link rel="stylesheet" href="/static/css/header-style.css"/>
-    <link rel="stylesheet" href="/static/css/articles-style.css"/>
-    <link rel="stylesheet" href="/static/css/projects-style.css"/>
-    <link rel="stylesheet" href="/static/css/sidebar.css"/>
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Tangerine|Oxygen" rel="stylesheet">
 
     <link rel="stylesheet" href="/static/css/prism.css"/>
     <link rel="stylesheet" href="/static/css/prism-treeview.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Tajawal:500|Noto+Sans|Oxygen" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="/static/css/lity.min.css"/>
+    <link rel="stylesheet" href="/static/css/global.css"/>
+    <link rel="stylesheet" href="/static/css/articles.css"/>
 </head>
 <body>
-
-    {{template "header.html"}}
-
-    <div id="articles_page_wrapper" class="page_wrapper">
-    <!--SIDEBAR-->
-    <div id="articles_sidebar_wrapper" class="page_margin">
-        <div id="sidebar">
-            <a id="sidebar_close" href="#" class="close"></a>
-
-            <ul id="sidebar_icon_list">
-                <li><img class="sidebar_icon" src="/static/images/search_icon_black.png" width="50px" height="50px"></li>
-                <li><img class="sidebar_icon" src="/static/images/calendar.png" width="50px" height="50px"></li>
-                <li><img class="sidebar_icon" src="/static/images/share.png" width="50px" height="50px"></li>
-                <li><img class="sidebar_icon" src="/static/images/tag_icon.png" width="50px" height="50px"></li>
-            </ul>
-
-            <ul id="articles_tag_list"></ul>
-        </div>
+<div id="articles-page-container">
+    <div class="top-menu-bar">
+        <a href="home">Home</a>
+        <a href="projects">Projects</a>
+        <a href="contact">Contact</a>
+        <a href="about">About</a>
     </div>
-
-    <!--ARTICLE CONTENt-->
-    <div id="article_list">
-        <article class="article_wrapper">
-            <div class="collapse_article"><img src="/static/images/collapse_icon.png" width="20px" height="20px"></div>
-            <div class="expand_article hidden"><img src="/static/images/expand_icon.png" width="20px" height="20px"></div>
-        {{template "a-frame_intro.html"}}
-        </article>
-        <article class="article_wrapper">
-            <div class="collapse_article"><img src="/static/images/collapse_icon.png" width="20px" height="20px"></div>
-            <div class="expand_article hidden"><img src="/static/images/expand_icon.png" width="20px" height="20px"></div>
+    <div class="current-article">
         {{template "go_client_communication.html"}}
-        </article>
-        <article class="article_wrapper">
-            <div class="collapse_article"><img src="/static/images/collapse_icon.png" width="20px" height="20px"></div>
-            <div class="expand_article hidden"><img src="/static/images/expand_icon.png" width="20px" height="20px"></div>
-        {{template "git_part1_introduction.html"}}
-        </article>
     </div>
-
-    <div class="page_margin"></div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/static/js/lity.js"></script>
+<script src="/static/js/plugins/youtube/youtube.min.js"></script>
 <script type="text/javascript" src="/static/js/article-generate.js"></script>
 <script type="text/javascript" src="/static/js/menu_selection.js"></script>
 <script type="text/javascript" src="/static/js/prism.js"></script>
@@ -69,5 +37,4 @@
 <script type="text/javascript" src="/static/js/collapse_control.js"></script>
 
 </body>
-<script>get_current_page_name()</script>
 </html>
