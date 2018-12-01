@@ -5,7 +5,6 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"log"
 	"net/http"
-	"os"
 	"text/template"
 )
 
@@ -66,8 +65,7 @@ func handleTagRequests(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	email = os.Args[1]
-	pass = os.Args[2]
+
 
 	getTodoList("oak", "https://github.com/ryanmccauley211/Oak/blob/master/README.md")
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))

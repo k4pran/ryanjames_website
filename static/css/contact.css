@@ -1,5 +1,8 @@
 html {
     height: 100%;
+    animation: pageload 1s forwards ease-in-out;
+    animation-delay: 0.2s;
+
 }
 
 body {
@@ -12,7 +15,7 @@ body {
     background-color: #FEFEFE;
     display: grid;
     grid-template-columns: auto 25% 25% 25% auto;
-    grid-template-rows: 30% auto auto 5%;
+    grid-template-rows: 30% auto 20%;
     grid-column-gap: 5%;
     grid-row-gap: 2%;
     align-items: stretch;
@@ -69,18 +72,38 @@ hr {
 
 .contact-bottom-menu {
     grid-column: 1 / end;
-    grid-row-start: 4;
-    background-color: #da635d;
+    grid-row-start: 3;
 
+    display: flex;
+    flex-direction: column;
+}
+
+.top-margin {
+    flex: 2;
+}
+
+.top-expansion {
+    flex: 1;
+}
+
+.bottom-expansion {
+    flex: 1;
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto;
     justify-items: center;
     align-items: center;
+    grid-auto-flow: column;
+    background-color: #da635d;
+    transition: all 0.5s;
 }
 
 .contact-bottom-menu-item {
     font-size: 4vmin;
+    animation: hide 1s forwards ease-in-out;
+    animation-delay: 0.2s;
+}
+
+.bottom-expansion:hover .contact-bottom-menu-item {
+    animation: show 1s forwards ease-in-out;
 }
 
 .contact-bottom-menu-item a {
@@ -100,5 +123,31 @@ hr {
     }
     #hire-box p, #contribute-box p, #other-box p {
         font-size: 2.5vmin;
+    }
+}
+
+@keyframes hide {
+    0% { transform: translate(0);}
+    20% { transform: translate(5px);}
+    100% { transform: translate(-120vw);}
+}
+
+@keyframes show {
+    0% { transform: translate(-120vw);}
+    80% { transform: translate(-5px);}
+    100% { transform: translate(0vw);}
+}
+
+@keyframes pageload {
+    0% { transform: translate(-120vw);
+    opacity: 0;
+    }
+    80% { transform: translate(-5px);
+        opacity: 0.5;
+
+    }
+    100% { transform: translate(0vw);
+
+        opacity: 1;
     }
 }
