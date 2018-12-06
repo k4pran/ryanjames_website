@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"text/template"
+	"io/ioutil"
 )
 
 var article = ArticleJson{}
@@ -63,9 +64,19 @@ func handleTagRequests(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func handleRequestContainer(w http.ResponseWriter, r *http.Request) {
+
+	var t, err = template.ParseFiles("static/articles/go_client_communication.html");
+	err = t.Execute(w, nil)
+	if err != nil {
+		log.Printf("Template execution error: %v", err)
+	}
+
+	htmlBytes, _ := ioutil.ReadFile("static/templates/articles.html")
+	w.Write(htmlBytes)
+}
+
 func main() {
-
-
 
 	getTodoList("oak", "https://github.com/ryanmccauley211/Oak/blob/master/README.md")
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
@@ -76,6 +87,7 @@ func main() {
 	http.HandleFunc("/about", handleAbout)
 
 	http.HandleFunc("/tag", handleTagRequests)
+	http.HandleFunc("/request-container", handleRequestContainer)
 
 	fmt.Println("Listening...")
 	log.Fatal(http.ListenAndServe("localhost:8080", nil))
